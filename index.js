@@ -47,6 +47,7 @@ var FastDate = function(obj,format) {
   	if(!obj) {
 	  	obj = new Date();
 	  } else if (format) {
+	  	// https://date-fns.org/v2.16.1/docs/parse
 		obj = fns.parse(obj,convertFormat(format),new Date());
 	  } else {
 	  	obj = new Date(obj);
@@ -167,11 +168,15 @@ FastDate.prototype.utcOffset = function format(amount,datepart) {
 };
 
 FastDate.prototype.day = function format(amount,datepart) {
-	return this.obj.getDay();;	
+	return this.obj.getDay();	
+};
+
+FastDate.prototype.clone = function format(amount,datepart) {
+	return new FastDate(this.obj);
 };
 
 FastDate.unix = function format(unixTime) {
-	return new FastDate(fns.fromUnixTime(unixTime));;
+	return new FastDate(fns.fromUnixTime(unixTime));
 };
 
 module.exports = FastDate;
