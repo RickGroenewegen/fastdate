@@ -46,17 +46,25 @@ var FastDate = function(obj,format) {
   } else {
   	if(!obj) {
 	  	obj = new Date();
-	  } else if (format) {
+	  } else if (format && isValidDate(obj)) {
 	  	// https://date-fns.org/v2.16.1/docs/parse
 		obj = fns.parse(obj,convertFormat(format),new Date());
 	  } else {
-	  	obj = new Date(obj);
-	  }
+	  	try {
+	  		obj = new Date(obj);
+	  	} catch(e) {
+	  		throw 'Invalid date object or string: ' + obj
+	  	}
+	  } 
   }
   
 
   this.obj = obj;
 };
+
+function isValidDate(date) {
+  return date && Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date);
+}
 
 var convertFormat = function(format) {
 	var newFormat = format;
