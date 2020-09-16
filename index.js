@@ -82,15 +82,15 @@ FastDate.pad = function(num, size) {
     return s;
 };
 
-FastDate.addFormatFunction = function format(format,func) {
+FastDate.addFormatFunction = function(format,func) {
 	formatFunctions[format] = func;
 };
 
-FastDate.addParseMapping = function format(format,val) {
+FastDate.addParseMapping = function(format,val) {
 	parseMappings[format] = val;
 };
 
-FastDate.prototype.format = function format(format) {
+FastDate.prototype.format = function(format) {
 	var returnVal = null;
 	if(!format) {
 		format = 'default';
@@ -104,7 +104,7 @@ FastDate.prototype.format = function format(format) {
 };
 
 
-FastDate.prototype.diff = function format(date2,datepart) {
+FastDate.prototype.diff = function(date2,datepart) {
 	var returnValue = null;
 	var compareDate = date2;
 	if(date2 instanceof FastDate) {
@@ -118,7 +118,7 @@ FastDate.prototype.diff = function format(date2,datepart) {
 	return returnValue;	
 };
 
-FastDate.prototype.add = function format(amount,datepart) {
+FastDate.prototype.add = function(amount,datepart) {
 	try {
 		this.obj = functionMappings.add[datepart](this.obj, amount);
 	} catch(e) {
@@ -127,7 +127,7 @@ FastDate.prototype.add = function format(amount,datepart) {
 	return this;	
 };
 
-FastDate.prototype.subtract = function format(amount,datepart) {
+FastDate.prototype.subtract = function(amount,datepart) {
 	try {
 		this.obj = functionMappings.add[datepart](this.obj, -amount);
 	} catch(e) {
@@ -136,7 +136,7 @@ FastDate.prototype.subtract = function format(amount,datepart) {
 	return this;	
 };
 
-FastDate.prototype.set = function format(params) {
+FastDate.prototype.set = function(params) {
 	for (var param in params) {
 		if(param == 'year') {
 			this.obj.setFullYear(params[param]);
@@ -159,19 +159,19 @@ FastDate.prototype.set = function format(params) {
 	return this;	
 };
 
-FastDate.prototype.toDate = function format(amount,datepart) {
+FastDate.prototype.toDate = function() {
 	return this.obj;	
 };
 
-FastDate.prototype.utcOffset = function format(amount,datepart) {
+FastDate.prototype.utcOffset = function() {
 	return -this.obj.getTimezoneOffset();
 };
 
-FastDate.prototype.day = function format(amount,datepart) {
+FastDate.prototype.day = function() {
 	return this.obj.getDay();	
 };
 
-FastDate.prototype.clone = function format(amount,datepart) {
+FastDate.prototype.clone = function () {
 	return new FastDate(this.obj);
 };
 
