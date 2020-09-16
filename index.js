@@ -46,7 +46,7 @@ var FastDate = function(obj,format) {
   } else {
   	if(!obj) {
 	  	obj = new Date();
-	  } else if (format && isValidDate(obj)) {
+	  } else if (format && !isValidDate(obj)) {
 	  	// https://date-fns.org/v2.16.1/docs/parse
 		obj = fns.parse(obj,convertFormat(format),new Date());
 	  } else {
