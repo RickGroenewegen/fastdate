@@ -170,4 +170,8 @@ FastDate.prototype.day = function format(amount,datepart) {
 	return this.obj.getDay();;	
 };
 
+FastDate.unix = function format(unixTime) {
+	return new FastDate(fns.fromUnixTime(unixTime));;
+};
+
 module.exports = FastDate;
