@@ -126,6 +126,14 @@ FastDate.prototype.diff = function(date2,datepart) {
 	return returnValue;	
 };
 
+FastDate.prototype.isAfter = function(date2) {
+	var compareDate = date2;
+	if(date2 instanceof FastDate) {
+		compareDate = date2.obj;
+	}
+	return fns.isAfter(this.obj,compareDate);
+};
+
 FastDate.prototype.add = function(amount,datepart) {
 	try {
 		this.obj = functionMappings.add[datepart](this.obj, amount);
