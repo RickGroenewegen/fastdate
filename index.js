@@ -152,6 +152,50 @@ FastDate.prototype.subtract = function(amount,datepart) {
 	return this;	
 };
 
+FastDate.prototype.startOf = function(datepart) {
+	var returnObj = null;
+	if(datepart == 'year') {
+		returnObj = fns.startOfYear(this.obj);
+	} else if(datepart == 'quarter') {
+		returnObj = fns.startOfQuarter(this.obj);
+	} else if(datepart == 'month') {
+		returnObj = fns.startOfMonth(this.obj);
+	} else if(datepart == 'week') {
+		returnObj = fns.startOfWeek(this.obj);
+	} else if(datepart == 'hour') {
+		returnObj = fns.startOfHour(this.obj);
+	} else if(datepart == 'minute') {
+		returnObj = fns.startOfMinute(this.obj);
+	} else if(datepart == 'second') {
+		returnObj = fns.startOfSecond(this.obj);
+	} else {
+		throw 'Invalid datepart' + param;
+	}
+	return new FastDate(returnObj);	
+};
+
+FastDate.prototype.endOf = function(datepart) {
+	var returnObj = null;
+	if(datepart == 'year') {
+		returnObj = fns.endOfYear(this.obj);
+	} else if(datepart == 'quarter') {
+		returnObj = fns.endOfQuarter(this.obj);
+	} else if(datepart == 'month') {
+		returnObj = fns.endOfMonth(this.obj);
+	} else if(datepart == 'week') {
+		returnObj = fns.endOfWeek(this.obj);
+	} else if(datepart == 'hour') {
+		returnObj = fns.endOfHour(this.obj);
+	} else if(datepart == 'minute') {
+		returnObj = fns.endOfMinute(this.obj);
+	} else if(datepart == 'second') {
+		returnObj = fns.endOfSecond(this.obj);
+	} else {
+		throw 'Invalid datepart' + param;
+	}
+	return new FastDate(returnObj);	
+};
+
 FastDate.prototype.set = function(params) {
 	for (var param in params) {
 		if(param == 'year') {
