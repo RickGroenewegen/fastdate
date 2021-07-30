@@ -18,6 +18,7 @@
   "author": "Rick Groenewegen",
   "license": "ISC",
   "dependencies": {
-    "date-fns": "^2.16.1"
+    "date-fns": "^2.16.1",
+    "speed-date": "^1.0.0"
   }
 }

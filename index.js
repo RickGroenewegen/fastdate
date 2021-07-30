@@ -3,6 +3,7 @@
 }());
 
 var fns = require('date-fns');
+var speedDate = require('speed-date');
 
 var functionMappings = {
 	'diff' : {
@@ -99,18 +100,8 @@ FastDate.addParseMapping = function(format,val) {
 };
 
 FastDate.prototype.format = function(format) {
-	var returnVal = null;
-	if(!format) {
-		format = 'default';
-	}
-	if(formatFunctions[format]) {
-		returnVal = formatFunctions[format](this.obj);
-	} else {
-		throw 'Unsupported format: ' + format;
-	}
-	return returnVal;
+	return speedDate.cached(format, this.obj);
 };
-
 
 FastDate.prototype.diff = function(date2,datepart) {
 	var returnValue = null;
