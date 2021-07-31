@@ -4,6 +4,7 @@
 
 var fns = require('date-fns');
 var speedDate = require('speed-date');
+var DateParser = require('fast-date-parse');
 
 var functionMappings = {
 	'diff' : {
@@ -37,6 +38,7 @@ var formatFunctions = {
 };
 
 var parseMappings = {};
+var fastDateParsers = {};
 
 var FastDate = function(obj,format) {
 
@@ -49,7 +51,14 @@ var FastDate = function(obj,format) {
 	  	obj = new Date();
 	  } else if (format && !isValidDate(obj)) {
 	  	// https://date-fns.org/v2.16.1/docs/parse
-		obj = fns.parse(obj,convertFormat(format),new Date());
+	  	if(parseMappings[format]) {
+				obj = fns.parse(obj,convertFormat(format),new Date());
+			} else {
+				if(!fastDateParsers[format]) {
+					fastDateParsers[format] = new DateParser(format);
+				}
+				obj = fastDateParsers[format].parse(obj);
+			}
 	  } else {
 	  	try {
 	  		obj = new Date(obj);

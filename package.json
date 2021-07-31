@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "date-fns": "^2.16.1",
+    "fast-date-parse": "^1.0.0",
     "speed-date": "^1.0.0"
   }
 }
